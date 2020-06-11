@@ -8,8 +8,16 @@ function get(country){
     })
     .done(data => {
         console.log(data)
+        
     })
     .fail(err => {
         console.log(err.responseJSON.errors)
+    })
+}
+
+function getweather(city){
+    $.ajax({
+        method: 'get',
+        url: URL + `third-APIs/getweather/${city}`
     })
 }
