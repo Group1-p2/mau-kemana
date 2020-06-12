@@ -59,31 +59,29 @@
   </section>
   <!-- HOMEP-PAGE -->
   <section id="home-page" class="home-page">
-    <div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a onclick="logout()" class="navbar-brand" href="#">Logout</a>
+    <div class="bg-info">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">Mau Kemana?</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
           </ul>
         </div>
+        <a onclick="logout()" class="navbar-brand" href="#">Logout</a>
       </nav>
     </div>
-    <div>
-      <input class="form-control form-control-lg" type="text" placeholder="Jakarta">
+    <div class="mt-5 mb-2">
+      <input id="country" class="form-control form-control-lg" type="text" placeholder="Jakarta">
     </div>
-    <button type="submit" class="btn btn-primary">Search</button>
+    <button onclick="searchDataCovid()" type="submit" class="btn btn-primary">Search</button>
     </div>
   </section>
   <!-- MAIN-PAGE -->
-  <section id="main-page" class="main-page">
+  <section id="main-page" class="main-page mt-5 mb-2">
     <div class="container">
       <div class="row">
         <div class="col-sm">
           <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="">
+            <img src="./image/covid.jpg" class="card-img-top" alt="">
             <div class="card-body">
               <h5 class="card-title">Total Confirmed</h5>
               <p class="card-text" id="TotalConfirmed">0</p>
@@ -93,9 +91,9 @@
         </div>
         <div class="col-sm">
           <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="">
+            <img src="./image/covid.jpg" class="card-img-top" alt="">
             <div class="card-body">
-              <h5 class="card-title">Total Deadth</h5>
+              <h5 class="card-title">Total Death</h5>
               <p class="card-text" id="TotalDeaths">0</p>
               <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
             </div>
@@ -103,7 +101,7 @@
         </div>
         <div class="col-sm">
           <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="">
+            <img src="./image/covid.jpg" class="card-img-top" alt="">
             <div class="card-body">
               <h5 class="card-title">Total Recovered</h5>
               <p class="card-text" id="TotalRecovered">0</p>
@@ -113,7 +111,11 @@
         </div>
       </div>
     </div>
-
+  </section>
+  <section id="footer">
+    <div class="card-footer text-muted">
+      Project Phase 2
+    </div>
   </section>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
