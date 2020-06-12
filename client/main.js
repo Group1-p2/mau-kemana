@@ -128,18 +128,16 @@ function getDataCovid() {
         })
 }
 
-// function getweather(city) {
-//     $.ajax({
-//             method: 'get',
-//             url: URL + third - APIs / getweather / $ {
-//                 city
-//             }
-//         })
-//         .done(data => {
-//             console.log(data)
+function getweather(city) {
+    $.ajax({
+            method: 'get',
+            url: `${baseUrl} third-APIs/getweather/${city}`
+        })
+        .done(data => {
+            console.log(data)
 
-//         })
-//         .fail(err => {
-//             console.log(err.responseJSON.errors)
-//         })
-// }
+        })
+        .fail(err => {
+            console.log(err.responseJSON.errors)
+        })
+}
