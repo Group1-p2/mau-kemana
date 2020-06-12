@@ -1,19 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="google-signin-client_id"
+      content="645869052796-pskia0nhqal664an7pu8l37v6c4lmqds.apps.googleusercontent.com"
+    />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="style/loginPage.css" />
     <link rel="stylesheet" href="style/trip-advisor.css" />
-    <title>Mau Kemana?</title>
+    <title>Document</title>
   </head>
+
   <body>
+    <!-- LOGIN-PAGE -->
+    <center>
+      <section id="login-page" class="login-page">
+        <div>
+          <form onsubmit="login(event)">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email-login"
+                aria-describedby="emailHelp"
+              />
+              <small id="emailHelp" class="form-text text-muted"
+                >We'll never share your email with anyone else.</small
+              >
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="password-login" />
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary btn-lg btn-block">
+                Submit
+              </button>
+            </div>
+          </form>
+          <br />
+          <div>
+            <button
+              onclick="formRegister()"
+              type="submit"
+              class="btn btn-primary btn-lg btn-block"
+            >
+              Register
+            </button>
+          </div>
+          <br />
+          <div style="align-items: center; justify-content: center;">
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+          </div>
+        </div>
+      </section>
+    </center>
+
+    <!-- REGISTER -->
+    <section id="form-register" class="form-register">
+      <form onsubmit="register(event)">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email-register"
+            aria-describedby="emailHelp"
+          />
+          <small id="emailHelp" class="form-text text-muted"
+            >We'll never share your email with anyone else.</small
+          >
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password-register" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </section>
+
+    <!-- HOMEP-PAGE -->
+    <section id="home-page" class="home-page">
+      <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a onclick="logout()" class="navbar-brand" href="#">Logout</a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" onclick="auth()"
+                  >Home <span class="sr-only">(current)</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <form onsubmit="getPlaceInfo(event)">
+        <div class="form-group">
+          <input
+            id="search-place"
+            type="text"
+            class="form-control"
+            aria-describedby="emailHelp"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </section>
+
+    <!-- MAIN-PAGE -->
+    <section id="main-page" class="main-page">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <div class="card" style="width: 18rem;">
+              <img src="" class="card-img-top" alt="" />
+              <div class="card-body">
+                <h5 class="card-title">Total Confirmed</h5>
+                <p class="card-text" id="TotalConfirmed">0</p>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="card" style="width: 18rem;">
+              <img src="" class="card-img-top" alt="" />
+              <div class="card-body">
+                <h5 class="card-title">Total Deadth</h5>
+                <p class="card-text" id="TotalDeaths">0</p>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+              </div>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="card" style="width: 18rem;">
+              <img src="" class="card-img-top" alt="" />
+              <div class="card-body">
+                <h5 class="card-title">Total Recovered</h5>
+                <p class="card-text" id="TotalRecovered">0</p>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div id="trip-advisor">
       <div id="trip-advisor-geos"></div>
 
@@ -38,6 +179,7 @@
       </div>
     </div>
 
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.js"
       integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
@@ -46,127 +188,3 @@
     <script src="main.js"></script>
   </body>
 </html>
-=======
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="google-signin-client_id"
-    content="645869052796-pskia0nhqal664an7pu8l37v6c4lmqds.apps.googleusercontent.com" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
-  <link rel="stylesheet" href="style/loginPage.css">
-  <title>Document</title>
-</head>
-
-<body>
-  <!-- LOGIN-PAGE -->
-  <center>
-    <section id="login-page" class="login-page">
-      <div>
-        <form onsubmit="login(event)">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="email-login" aria-describedby="emailHelp" />
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="password-login" />
-          </div>
-          <div>
-            <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
-          </div>
-        </form>
-        <br>
-        <div>
-          <button onclick="formRegister()" type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
-        </div>
-        <br>
-        <div style="align-items: center; justify-content: center;">
-          <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        </div>
-      </div>
-    </section>
-  </center>
-  <!-- REGISTER -->
-  <section id="form-register" class="form-register">
-    <form onsubmit="register(event)">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email-register" aria-describedby="emailHelp">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password-register">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </section>
-  <!-- HOMEP-PAGE -->
-  <section id="home-page" class="home-page">
-    <div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a onclick="logout()" class="navbar-brand" href="#">Logout</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-    <div>
-      <input class="form-control form-control-lg" type="text" placeholder="Jakarta">
-    </div>
-    <button type="submit" class="btn btn-primary">Search</button>
-    </div>
-  </section>
-  <!-- MAIN-PAGE -->
-  <section id="main-page" class="main-page">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="">
-            <div class="card-body">
-              <h5 class="card-title">Total Confirmed</h5>
-              <p class="card-text" id="TotalConfirmed">0</p>
-              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-            </div>
-          </div>
-        </div>
-        <div class="col-sm">
-          <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="">
-            <div class="card-body">
-              <h5 class="card-title">Total Deadth</h5>
-              <p class="card-text" id="TotalDeaths">0</p>
-              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-            </div>
-          </div>
-        </div>
-        <div class="col-sm">
-          <div class="card" style="width: 18rem;">
-            <img src="" class="card-img-top" alt="">
-            <div class="card-body">
-              <h5 class="card-title">Total Recovered</h5>
-              <p class="card-text" id="TotalRecovered">0</p>
-              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
-  <script src="main.js"></script>
-</body>
-
-</html>
->>>>>>> 8765d762b07ffa33bb8361b8c9373137baf01e11
