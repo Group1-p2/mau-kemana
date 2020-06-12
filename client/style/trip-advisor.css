@@ -68,3 +68,31 @@
   flex-direction: column;
   align-items: center;
 }
+
+.nav-link:hover {
+  cursor: pointer;
+}
+
+#search-place-form {
+  width: 500px;
+}
+
+.search-place-input {
+  display: inline-flex;
+}
+
+.info {
+  margin-top: 20px;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 25px;
+  color: white !important;
+}
+
+.nav-link {
+  font-size: 20px;
+  font-weight: 500;
+  color: white !important;
+}

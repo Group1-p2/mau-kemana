@@ -1,5 +1,5 @@
-let city = '';
-let country = '';
+let city = 'Jakarta';
+let country = 'Indonesia';
 const baseUrl = 'http://localhost:3000/';
 
 $(document).ready(function () {
@@ -8,18 +8,24 @@ $(document).ready(function () {
 
 function auth() {
   if (localStorage.access_token) {
-    getDataCovid();
+    getDataCovid(country);
+    getweather(country);
+
     $('.login-page').hide();
     $('.home-page').show();
     $('#trip-advisor').hide();
+    $('#trip-advisor-geos').hide();
     $('.form-register').hide();
     $('.main-page').show();
+    $('#weather-page').show();
   } else {
     $('.login-page').show();
     $('.home-page').hide();
     $('#trip-advisor').hide();
+    $('#trip-advisor-geos').hide();
     $('.form-register').hide();
     $('.main-page').hide();
+    $('#weather-page').hide();
   }
 }
 
@@ -81,9 +87,7 @@ function onSignIn(googleUser) {
       auth2.disconnect();
     })
     .fail((err) => {
-      // console.log(err)
       console.log(err.responseJSON.errors.msg);
-      alert(err.responseJSON);
     });
 }
 
@@ -91,7 +95,6 @@ function register(event) {
   event.preventDefault();
   let email = $('#email-register').val();
   let password = $('#password-register').val();
-  // console.log(email, password, 'masuk function register');
   $.ajax({
     method: 'post',
     url: baseUrl + 'register',
@@ -101,7 +104,6 @@ function register(event) {
     },
   })
     .done((data) => {
-      // console.log(data);
       localStorage.setItem('access_token', data.access_token);
       afterRegister();
     })
@@ -111,10 +113,9 @@ function register(event) {
 }
 
 function getDataCovid() {
-  let country = 'Indonesia';
   $.ajax({
     method: 'get',
-    url: baseUrl + `third-APIs/getdata/${country}`,
+    url: baseUrl + `third-apis/getdata/${country}`,
     headers: {
       access_token: localStorage.access_token,
     },
@@ -129,27 +130,24 @@ function getDataCovid() {
     });
 }
 
-function getweather(city) {
+function getweather() {
   $.ajax({
     method: 'get',
-    url: `${baseUrl} third-APIs/getweather/${city}`,
+    url: `${baseUrl}third-apis/getweather/${city}`,
   })
-    .done((data) => {
-      console.log(data);
+    .done(({ current }) => {
+      $('#weather').text(current.condition.text);
+      $('#temperature').text(current.temp_c + '°C');
+      $('#humidity').text(current.humidity);
     })
     .fail((err) => {
-      console.log(err.responseJSON.errors);
+      console.log(err);
     });
 }
 
 function getPlaceInfo(event) {
   event.preventDefault;
-
   city = $('#search-place').val();
-  // $.ajax({
-  //   method: 'get',
-  //   url: `${baseUrl}third-APIs/getPlaceInfo/${city}`,
-  // })
   $.ajax({
     async: true,
     crossDomain: true,
@@ -213,6 +211,7 @@ function getPlaceInfo(event) {
               if (ancestor.subcategory[0].key == 'country')
                 country = ancestor.name;
             }
+            break;
           } else if (
             category == 'restaurants' ||
             category == 'lodging' ||
@@ -220,13 +219,21 @@ function getPlaceInfo(event) {
           ) {
             $(`#trip-advisor-${category}`).append(`
               <div id="${category}-${i}" class="card">
-                  <img src="${advice.result_object.photo.images.small.url}" class="card-img-top" alt="">
+                  <img src="${
+                    advice.result_object.photo.images.small.url
+                  }" class="card-img-top" alt="">
                   <div class="card-body">
                     <h5 class="card-title">${advice.result_object.name}</h5>
-                    <p class="card-text">${advice.review_snippet.snippet}</p>
+                    <p class="card-text">${
+                      advice.review_snippet
+                        ? advice.review_snippet.snippet
+                        : 'Not yet'
+                    }</p>
                   </div>
                   <div class="card-footer">
-                    <small class="text-muted">${advice.result_object.address}</small>
+                    <small class="text-muted">${
+                      advice.result_object.address
+                    }</small>
                   </div>
                 </div>
               </div>
@@ -235,21 +242,23 @@ function getPlaceInfo(event) {
           if (i > 4) break;
         }
       }
+      getweather();
+      getDataCovid();
       $('#trip-advisor-things_to_do-title').text('Awesome attraction to watch');
       $('#trip-advisor-lodging-title').text('Classy hotels to rest');
       $('#trip-advisor-restaurants-title').text(
         'Delicious foods for your meal'
       );
+      $('#trip-advisor-geos').show();
       $('.login-page').hide();
       $('#trip-advisor').show();
       $('.form-register').hide();
-      $('.main-page').hide();
     })
     .fail((error) => {
       console.log('Error get data from trip advisor', error);
     })
     .always(() => {
-      citi = '';
+      city = '';
       $('#search-place').val('');
     });
 }

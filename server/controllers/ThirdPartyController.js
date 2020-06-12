@@ -22,7 +22,7 @@ class ThirdPartyController {
 
   static getweather(req, res, next) {
     const api_key = '8a5e195dbb18424f950170902201106';
-    const city = req.headers.city;
+    const city = req.params.city;
 
     axios
       .get(`http://api.weatherapi.com/v1/current.json?key=${api_key}&q=${city}`)
