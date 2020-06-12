@@ -1,6 +1,8 @@
 const URL = "http://localhost:3000/"
 
 function get(country){
+    country =
+
     $.ajax({
         method: 'get',
         url : URL + `/third-APIs/getdata/${country}`,
@@ -20,4 +22,12 @@ function getweather(city){
         method: 'get',
         url: URL + `third-APIs/getweather/${city}`
     })
+    .done(data => {
+        console.log(data)
+        
+    })
+    .fail(err => {
+        console.log(err.responseJSON.errors)
+    })
 }
+
