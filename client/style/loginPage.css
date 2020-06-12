@@ -1,15 +1,16 @@
-#login-page {
-    width: 700px;
-    position: relative;
-    top: 200px;
+#login-page,
+#form-register {
+  width: 700px;
+  position: relative;
+  top: 200px;
 }
 
 #footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: gainsboro;
-    color: white;
-    text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: gainsboro;
+  color: white;
+  text-align: center;
 }
